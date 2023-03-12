@@ -2,7 +2,7 @@ import { useOutletContext, useParams } from 'react-router-dom'
 import NotFound from './NotFound'
 
 // Mock Data
-const ids = ['1', '2', '3', '4', '5']
+const ids = ['1', '2']
 
 const Book = () => {
   const { id } = useParams()

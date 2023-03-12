@@ -1,47 +1,69 @@
-import { Route, Routes, Link } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
-import BookList from './components/BookList'
-import BookSidebar from './components/BookSidebar'
+import NotFound from './components/NotFound'
+import BookRoutes from './components/BookRoutes'
 
-// Mutiple Routes - Separate Routes
+// Mutiple Routes - Nested Routes
 
 function App() {
   return (
     <>
-      <nav>
-        <ul
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            maxWidth: 100,
-            listStyle: 'none',
-          }}
-        >
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/books'>Books</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <aside>
-        <Routes location='/books'>
-          {/* <Routes> */}
-          <Route path='books' element={<BookSidebar />} />
-        </Routes>
-      </aside>
-
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/books' element={<BookList />} />
+        <Route path='*' element={<NotFound />} />
+        <Route path='/books/*' element={<BookRoutes />} />
       </Routes>
     </>
   )
 }
 
 export default App
+
+// -------------------------------------------------------------------------------------
+// import { Route, Routes, Link } from 'react-router-dom'
+// import Home from './components/Home'
+// import BookList from './components/BookList'
+// import BookSidebar from './components/BookSidebar'
+
+// // Mutiple Routes - Separate Routes
+
+// function App() {
+//   return (
+//     <>
+//       <nav>
+//         <ul
+//           style={{
+//             display: 'flex',
+//             justifyContent: 'space-between',
+//             maxWidth: 100,
+//             listStyle: 'none',
+//           }}
+//         >
+//           <li>
+//             <Link to='/'>Home</Link>
+//           </li>
+//           <li>
+//             <Link to='/books'>Books</Link>
+//           </li>
+//         </ul>
+//       </nav>
+
+//       <aside>
+//         <Routes location='/books'>
+//           {/* <Routes> */}
+//           <Route path='books' element={<BookSidebar />} />
+//         </Routes>
+//       </aside>
+
+//       <Routes>
+//         <Route path='/' element={<Home />} />
+//         <Route path='/books' element={<BookList />} />
+//       </Routes>
+//     </>
+//   )
+// }
+
+// export default App
 
 // -------------------------------------------------------------------------------------
 // import { Route, Routes, Link } from 'react-router-dom'
