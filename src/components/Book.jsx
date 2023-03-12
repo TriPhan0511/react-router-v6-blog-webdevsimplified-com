@@ -1,9 +1,20 @@
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
+import NotFound from './NotFound'
+
+// Mock Data
+const ids = ['1', '2', '3', '4', '5']
 
 const Book = () => {
   const { id } = useParams()
+  const { hello } = useOutletContext()
 
-  return <h3>Book {id}</h3>
+  return ids.includes(id) ? (
+    <h3>
+      Book {id} {hello}
+    </h3>
+  ) : (
+    <NotFound />
+  )
 }
 
 export default Book
