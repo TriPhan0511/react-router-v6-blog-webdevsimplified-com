@@ -1,9 +1,13 @@
-import { Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useRoutes } from 'react-router-dom'
+import Book from './components/Book'
+import BookList from './components/BookList'
+import BooksLayout from './components/BooksLayout'
+import EditBook from './components/EditBook'
 import Home from './components/Home'
+import NewBook from './components/NewBook'
 import NotFound from './components/NotFound'
-import BookRoutes from './components/BookRoutes'
 
-// Mutiple Routes - Nested Routes
+// Link Navigation
 
 function App() {
   return (
@@ -11,7 +15,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='*' element={<NotFound />} />
-        <Route path='/books/*' element={<BookRoutes />} />
+        <Route path='/books' element={<BooksLayout />}>
+          <Route index element={<BookList />} />
+          <Route path=':id' element={<Book />} />
+          <Route path=':id/edit' element={<EditBook />} />
+          <Route path='new' element={<NewBook />} />
+        </Route>
       </Routes>
     </>
   )
@@ -20,6 +29,69 @@ function App() {
 export default App
 
 // -------------------------------------------------------------------------------------
+// import { useRoutes } from 'react-router-dom'
+// import Book from './components/Book'
+// import BookList from './components/BookList'
+// import BooksLayout from './components/BooksLayout'
+// import Home from './components/Home'
+// import NotFound from './components/NotFound'
+
+// // useRoutes Hook
+
+// function App() {
+//   const elements = useRoutes([
+//     {
+//       path: '/',
+//       element: <Home />,
+//     },
+//     {
+//       path: '*',
+//       element: <NotFound />,
+//     },
+//     {
+//       path: '/books',
+//       element: <BooksLayout />,
+//       children: [
+//         {
+//           index: true,
+//           element: <BookList />,
+//         },
+//         {
+//           path: ':id',
+//           element: <Book />,
+//         },
+//       ],
+//     },
+//   ])
+
+//   return elements
+// }
+
+// export default App
+
+// // -------------------------------------------------------------------------------------
+// import { Route, Routes } from 'react-router-dom'
+// import Home from './components/Home'
+// import NotFound from './components/NotFound'
+// import BookRoutes from './components/BookRoutes'
+
+// // Mutiple Routes - Nested Routes
+
+// function App() {
+//   return (
+//     <>
+//       <Routes>
+//         <Route path='/' element={<Home />} />
+//         <Route path='*' element={<NotFound />} />
+//         <Route path='/books/*' element={<BookRoutes />} />
+//       </Routes>
+//     </>
+//   )
+// }
+
+// export default App
+
+// // -------------------------------------------------------------------------------------
 // import { Route, Routes, Link } from 'react-router-dom'
 // import Home from './components/Home'
 // import BookList from './components/BookList'
